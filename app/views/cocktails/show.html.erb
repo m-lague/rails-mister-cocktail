@@ -1,2 +1,15 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<h1><%= @cocktail.name %></h1>
+
+<div>
+  <% if @cocktail.doses.empty? %>
+    <p>No dose yet</p>
+  <% else %>
+    <p>You need :</p>
+      <% @cocktail.doses.each do |dose|%>
+      <p> <%= dose.description %></p>
+    <% end %>
+  <% end %>
+
+</div>
+
+<%= link_to "back", cocktails_path %>
