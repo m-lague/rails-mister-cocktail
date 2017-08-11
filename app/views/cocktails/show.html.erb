@@ -1,16 +1,26 @@
-<h1><%= @cocktail.name %></h1>
-
-<div>
-  <% if @cocktail.doses.empty? %>
-    <p>No dose yet</p>
-  <% else %>
-    <p>You need :</p>
-      <% @cocktail.doses.each do |dose|%>
-      <p> <%= dose.description %></p>
-    <% end %>
-  <% end %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1><%= @cocktail.name %></h1>
+      <ul>
+        <% if @cocktail.doses.empty? %>
+          <p>No dose yet...</p>
+        <% else %>
+          <% @cocktail.doses.each do |dose| %>
+            <% if dose.persisted? %>
+              <li>
+                <%= dose.description %> <%= dose.ingredient.name %>
+                <%= link_to "&times;".html_safe, dose_path(dose), method: :delete %>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+      <h3>Add a dose</h3>
+      <p>
+        <%= render "doses/form_dose", cocktail: @cocktail, dose: @dose %>
+      </p>
+      <%= link_to 'Back', root_path %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "back", cocktails_path %>
-<%= link_to "add a dose", new_cocktail_dose_path(@cocktail) %>
