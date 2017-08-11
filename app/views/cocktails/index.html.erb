@@ -13,9 +13,7 @@
         <div class="card text-center">
 
           <% if cocktail.picture %>
-            <div class="card-header">
-            <%= cl_image_tag("ku2nozrik7ra2lv2mz8b",
-              width: 400, height: 300, crop: :fill) %>
+            <div class="card-header" style="background-image: url('<%= image_path cocktail.picture%>'); height:200px;">
             </div>
           <% else %>
             <div class="card-header">
