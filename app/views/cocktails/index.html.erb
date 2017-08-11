@@ -9,26 +9,33 @@
 
     <% @cocktails.each do |cocktail| %>
       <div class="col-xs-12 col-sm-4">
+        <%= link_to cocktail_path(cocktail) do %>
         <div class="card text-center">
 
           <% if cocktail.picture %>
-            <div class="card-header" style="background-image: url('<%= image_path cocktail.picture%>'); height:200px">
+            <div class="card-header">
+            <%= cl_image_tag("ku2nozrik7ra2lv2mz8b",
+              width: 400, height: 300, crop: :fill) %>
             </div>
           <% else %>
-            <div class="card-header" style="background-image: url('http://www.seriouseats.com/images/2014/11/20141104-cocktail-party-old-fashioneds-holiday-vicky-wasik-3.jpg'); height: 200px">
+            <div class="card-header">
+            <%=   cl_image_tag("f00343c9488a8fd6c482027b36093573--bora-bora-liqueur_mypial", :transformation=>[
+              {:effect=>"tint", :height=>237, :opacity=>72, :quality=>41, :radius=>18, :width=>116, :crop=>"fit", :fetch_format=>"png"},
+              {:angle=>325}
+              ])%>
             </div>
           <% end %>
           <div class="card-body">
-            <%= link_to cocktail.name, cocktail_path(cocktail) %>
+            <%= cocktail.name %>
           </div>
         </div>
+        <% end %>
       </div>
     <% end %>
   </div>
 </div>
 
-<div class="card-header" style="background-image: url('http://www.seriouseats.com/images/2014/11/20141104-cocktail-party-old-fashioneds-holiday-vicky-wasik-3.jpg')">
-</div>
+
 
 
 
